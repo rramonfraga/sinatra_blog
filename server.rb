@@ -7,9 +7,9 @@ require_relative './lib/Post.rb'
 
 #enable(:sessions)
 my_blog = Blog.new
-my_blog.add_post(Post.new "Week one", "It was phantastic!")
-my_blog.add_post(Post.new "Week two", "It's being phantastic too!")
-my_blog.add_post(Post.new "Week three", "It will be super phantastic!")
+my_blog.add_post(Post.new "Week one", "It was phantastic!","Bio","Rata")
+my_blog.add_post(Post.new "Week two", "It's being phantastic too!","Bio","Rata")
+my_blog.add_post(Post.new "Week three", "It will be super phantastic!","Bio","Rata")
 
 
 get "/" do
@@ -32,7 +32,7 @@ end
 
 
 post "/????" do
-  new_post = Post.new(params[:title], params[:post])
+  new_post = Post.new(params[:title], params[:post], params[:category], params[:author])
   my_blog.add_post new_post
   redirect("/homepage")
 end

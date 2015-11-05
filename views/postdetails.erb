@@ -6,11 +6,10 @@
 <body>
   <h1> Welcome to the Rata's Ironhack Blog</h1>
       <h3><%= @post.title %></h3>
-      <p>
-        <%= @post.show_in_strftime %>
-        <br>
-        <%= @post.post %>
-      </p>
+      <p><%= @post.show_in_strftime %></p>
+      <p><%= @post.post %></p>
+      <p>CATHEGORY: <%= @post.category %>  AUTHOR: <%= @post.author %></p>
+      
 
 </body>
 </html>
