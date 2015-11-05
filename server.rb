@@ -1,16 +1,38 @@
 require 'sinatra'
-#require 'sinatra/reloader'
+require 'sinatra/reloader'
 #require 'pry'
+require_relative './lib/Blog.rb'
+require_relative './lib/Post.rb'
+
+
+#enable(:sessions)
+my_blog = Blog.new
+my_blog.add_post(Post.new "Week one", "It was phantastic!")
+my_blog.add_post(Post.new "Week two", "It's being phantastic too!")
+my_blog.add_post(Post.new "Week three", "It will be super phantastic!")
 
 
 get "/" do
-  "hello world"
+  redirect("/homepage")
 end
 
-get "/real_page" do
-  "Welcome to the real page"
+get "/homepage" do
+  @posts = my_blog.latest_posts
+  erb(:homepage)
 end
 
-get "/hi" do
-  redirect('/real_page')
+get "/post_details/:index" do 
+  @post = my_blog.latest_posts[params[:index].to_i]
+  erb(:postdetails)
+end
+
+get "/new_post" do 
+  erb(:newpost)  
+end
+
+
+post "/????" do
+  new_post = Post.new(params[:title], params[:post])
+  my_blog.add_post new_post
+  redirect("/homepage")
 end

@@ -1,6 +1,7 @@
 require_relative '../server.rb'
 require 'rspec'
 require 'rack/test'
+require 'pry'
 
 describe 'Server Service' do
   include Rack::Test::Methods
@@ -9,6 +10,17 @@ describe 'Server Service' do
     Sinatra::Application
   end
 
+  it "hould load the home page" do
+    get "/homepage"
+    expect(last_response).to be_ok
+  end
+  it "hould load the post details page" do
+    get "/post_details/:index"
+    expect(last_response).to be_ok
+  end
+
+end
+=begin
   it "should load the home page" do
     get "/"
     expect(last_response).to be_ok
@@ -26,6 +38,8 @@ describe 'Server Service' do
     expect(last_response.redirect?).to be(true)
     follow_redirect!
     expect(last_request.path).to eq('/real_page')
-  end 
+  end
+=end 
 
-end
+
+
